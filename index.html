@@ -1,0 +1,832 @@
+<!doctype html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Baixar o Onda — Windows e Android</title>
+<meta name="description" content="Baixe o Onda para Windows (instalador ou portable) e para Android (APK). Busque qualquer música e ouça com karaokê sincronizado, visualizers e modos imersivos.">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Baixar o Onda — Windows e Android">
+<meta property="og:description" content="Karaokê sincronizado, visualizers e modos imersivos. Instalador, portable e APK.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23111'/%3E%3Cpath d='M10 34c6 0 6-12 12-12s6 20 12 20 6-24 12-24 6 16 8 16' fill='none' stroke='%23fff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+
+:root{
+  --text:#f5f5f7;
+  --muted:rgba(245,245,247,.62);
+  --faint:rgba(245,245,247,.38);
+  --line:rgba(255,255,255,.08);
+  --blue:#3b82f6;--blue-l:#60a5fa;--blue-xl:#93c5fd;--blue-d:#2563eb;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --font:'Outfit',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
+  --aura:conic-gradient(from var(--a),#8b5cf6,#22d3ee,#f472b6,#f59e0b,#8b5cf6);
+  --ring:conic-gradient(from var(--a),rgba(255,255,255,.06),rgba(255,255,255,.9) 12%,rgba(255,255,255,.06) 26%,rgba(255,255,255,.06) 50%,rgba(255,255,255,.5) 62%,rgba(255,255,255,.06) 76%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:24px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{min-height:100vh;font-family:var(--font);color:var(--text);background:#000;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+svg{display:block}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid rgba(255,255,255,.75);outline-offset:3px}
+::selection{background:rgba(147,197,253,.35)}
+.ic{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.wrap{width:min(1120px,100%);margin:0 auto;padding:0 20px}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spin{to{--a:360deg}}
+@keyframes turn{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes rise{from{opacity:0;translate:0 20px}to{opacity:1;translate:none}}
+
+
+.bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(180deg,#000 0%,#050506 30%,#0e0e10 62%,#1c1c1f 100%)}
+.bg::before{content:'';position:absolute;inset:0;background:radial-gradient(130% 90% at 50% 35%,transparent 55%,rgba(0,0,0,.5) 100%)}
+.bg::after{content:'';position:absolute;inset:0;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.cfg{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:center;padding:10px 16px;font-size:13.5px;line-height:1.5;text-align:center;color:#fde68a;background:rgba(66,32,6,.86);border-bottom:1px solid rgba(251,191,36,.28);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.cfg code{font:12.5px var(--mono);padding:2px 7px;border-radius:6px;background:rgba(0,0,0,.35);color:#fff}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:18px;padding-bottom:18px}
+.brand{display:inline-flex;align-items:center;height:38px;padding:0 10px;margin-left:-10px;border-radius:12px;font-size:19px;font-weight:700;letter-spacing:-.03em;transition:background .2s,transform .25s var(--ease)}
+.brand:hover{background:rgba(255,255,255,.05)}
+.brand:active{transform:scale(.97)}
+.blue-dev{display:inline-block;padding:0 .06em;margin:0 -.06em;color:var(--blue);background:linear-gradient(90deg,var(--blue-l),var(--blue) 60%,var(--blue-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 12px rgba(59,130,246,.45))}
+.top-nav{display:flex;align-items:center;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 16px 0 13px;border-radius:999px;font-size:14.5px;color:rgba(255,255,255,.8);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:background .2s,color .2s}
+.chip:hover{background:rgba(255,255,255,.1);color:#fff}
+.chip .ic{font-size:17px}
+@media (max-width:560px){.chip.hide-sm{display:none}}
+
+.hero{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(22px,6vh,64px) 20px 10px;isolation:isolate}
+.hero > *{animation:rise 1s var(--ease) both;animation-delay:calc(var(--i,0) * 90ms + 60ms)}
+.hero > .hero-glow{position:absolute;left:0;right:0;top:-90px;height:calc(100% + 340px);z-index:-1;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.hero-aura{position:absolute;left:50%;top:30px;width:min(820px,150vw);aspect-ratio:1;margin-left:calc(min(820px,150vw) / -2);border-radius:50%;opacity:.15;filter:blur(80px);will-change:transform;
+  background:conic-gradient(#8b5cf6,#22d3ee,#f472b6,#f59e0b,#8b5cf6);animation:turn 30s linear infinite}
+
+.app-icon{position:relative;width:104px;height:104px;border-radius:28px;isolation:isolate;animation:float 7s ease-in-out infinite}
+.app-icon > svg{position:relative;z-index:1;width:100%;height:100%;border-radius:inherit;box-shadow:0 24px 50px -18px rgba(0,0,0,.9)}
+.app-icon::before,.app-icon::after{content:'';position:absolute;border-radius:inherit;pointer-events:none;animation:spin 8s linear infinite}
+.app-icon::before{inset:0;z-index:2;padding:1.5px;opacity:.85;background:var(--ring);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.app-icon::after{inset:-16px;z-index:-1;border-radius:44px;opacity:.5;filter:blur(30px);background:var(--aura)}
+.app-icon .wave{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s var(--ease) .35s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+.eyebrow{display:inline-flex;align-items:center;gap:9px;margin-top:28px;padding:6px 14px 6px 12px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:ping 2.2s ease-out infinite}
+.eyebrow .sep{opacity:.5}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(74,222,128,.55)}70%,100%{box-shadow:0 0 0 7px rgba(74,222,128,0)}}
+.title{margin-top:10px;padding:0 .06em .06em;font-size:clamp(68px,14vw,132px);font-weight:700;line-height:1;letter-spacing:-.05em;background:linear-gradient(180deg,#fff 35%,#c9d5e8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.lead{max-width:590px;margin-top:12px;font-size:clamp(17px,2.1vw,20px);line-height:1.5;color:var(--muted);text-wrap:balance}
+
+
+.cta-box{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:34px}
+.cta{position:relative;display:inline-flex;padding:1.5px;border-radius:999px;isolation:isolate;animation:float 7s ease-in-out -3.5s infinite}
+.cta::before,.cta::after{content:'';position:absolute;border-radius:inherit;pointer-events:none;animation:spin 8s linear infinite}
+.cta::before{inset:0;z-index:1;padding:1.5px;opacity:.75;transition:opacity .4s;background:var(--ring);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.cta::after{inset:-10px;z-index:-1;filter:blur(26px);opacity:.3;transition:opacity .5s;background:var(--aura)}
+.cta:hover::before,.cta:focus-visible::before{opacity:1}
+.cta:hover::after,.cta:focus-visible::after{opacity:.6}
+.cta-in{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:12px;min-width:min(310px,calc(100vw - 48px));height:62px;padding:0 30px;border-radius:inherit;font-size:18px;font-weight:600;white-space:nowrap;
+  background:linear-gradient(180deg,rgba(30,30,33,.96),rgba(12,12,13,.96));box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 30px 80px -24px rgba(0,0,0,.95);transition:transform .2s var(--ease)}
+.cta-in .ic{font-size:21px}
+.cta:active .cta-in{transform:scale(.98)}
+.cta-meta{font-size:14px;color:var(--faint);font-variant-numeric:tabular-nums}
+.cta-alt{font-size:14.5px;color:var(--muted)}
+.cta-alt a{color:var(--text);text-decoration:underline;text-decoration-color:rgba(255,255,255,.3);text-underline-offset:3px;transition:text-decoration-color .2s}
+.cta-alt a:hover{text-decoration-color:#fff}
+
+
+.feats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:clamp(48px,8vh,84px)}
+.feat{display:flex;align-items:flex-start;gap:14px;padding:18px;border-radius:20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+.feat-ic{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;font-size:19px}
+.feat:nth-child(1) .feat-ic{color:#c4b5fd;background:rgba(139,92,246,.16)}
+.feat:nth-child(2) .feat-ic{color:#67e8f9;background:rgba(34,211,238,.13)}
+.feat:nth-child(3) .feat-ic{color:#f9a8d4;background:rgba(244,114,182,.14)}
+.feat:nth-child(4) .feat-ic{color:#fcd34d;background:rgba(245,158,11,.14)}
+.feat b{display:block;font-size:15.5px;font-weight:600}
+.feat span{display:block;margin-top:3px;font-size:13.5px;line-height:1.45;color:var(--muted)}
+@media (max-width:960px){.feats{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.feats{grid-template-columns:1fr}}
+
+
+.sec{padding-top:clamp(72px,11vh,120px)}
+.sec-head{max-width:640px;margin:0 auto 32px;text-align:center}
+.kicker{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.sec-head h2{margin-top:10px;font-size:clamp(30px,4.6vw,46px);font-weight:700;line-height:1.08;letter-spacing:-.035em}
+.sec-head p{margin-top:12px;font-size:16.5px;line-height:1.5;color:var(--muted);text-wrap:balance}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.card{position:relative;display:flex;flex-direction:column;padding:26px 24px 20px;border-radius:26px;scroll-margin-top:40px;
+  background:radial-gradient(120% 60% at 50% 0%,rgba(255,255,255,.055),transparent 62%),linear-gradient(180deg,rgba(28,28,32,.86),rgba(12,12,15,.92));
+  border:1px solid rgba(255,255,255,.08);box-shadow:0 40px 90px -40px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.05);
+  transition:transform .45s var(--ease),border-color .3s,box-shadow .45s}
+.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.15)}
+.card::before{content:'';position:absolute;inset:-1px;z-index:1;border-radius:inherit;padding:1.5px;pointer-events:none;opacity:0;transition:opacity .5s;
+  background:var(--ring);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.card.rec{border-color:rgba(255,255,255,.04);box-shadow:0 40px 90px -40px rgba(0,0,0,.95),0 0 70px -18px rgba(139,92,246,.4),0 0 130px -40px rgba(34,211,238,.35),inset 0 1px 0 rgba(255,255,255,.06)}
+.card.rec::before{opacity:.95;animation:spin 8s linear infinite}
+.card.flash{animation:flash 1.1s var(--ease) 2}
+@keyframes flash{50%{box-shadow:0 0 0 2px rgba(255,255,255,.55),0 0 70px -10px rgba(147,197,253,.6)}}
+.rec-badge{position:absolute;top:-13px;left:50%;z-index:3;display:none;align-items:center;gap:6px;padding:5px 12px 5px 9px;border-radius:999px;transform:translateX(-50%);
+  font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:#000;background:#fff;box-shadow:0 10px 24px -10px rgba(255,255,255,.45)}
+.rec-badge .ic{font-size:13px;stroke-width:3}
+.card.rec .rec-badge{display:inline-flex}
+.card-head{display:flex;align-items:center;gap:14px}
+.plat-ic{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:16px;font-size:25px;color:#fff;box-shadow:0 12px 26px -12px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.25)}
+.plat-ic.win{background:linear-gradient(145deg,#60a5fa,#1d4ed8)}
+.plat-ic.usb{background:linear-gradient(145deg,#a78bfa,#6d28d9)}
+.plat-ic.droid{background:linear-gradient(145deg,#4ade80,#15803d)}
+.card h3{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.plat{margin-top:3px;font-size:13.5px;color:var(--muted)}
+.desc{flex:1;margin-top:16px;font-size:15px;line-height:1.55;color:var(--muted)}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;list-style:none}
+.meta li{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+.meta span{display:block;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--faint)}
+.meta b{display:block;margin-top:2px;font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:50px;margin-top:16px;padding:0 20px;border-radius:999px;font-size:16px;font-weight:600;white-space:nowrap;
+  color:#fff;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);transition:transform .2s var(--ease),background .2s,box-shadow .2s}
+.btn .ic{font-size:19px}
+.btn:hover{background:rgba(255,255,255,.13);transform:translateY(-1px)}
+.btn:active{transform:scale(.98)}
+.card.rec .btn{color:#000;background:#fff;border-color:transparent;box-shadow:0 14px 34px -14px rgba(255,255,255,.45)}
+.card.rec .btn:hover{background:#fff;box-shadow:0 18px 40px -14px rgba(255,255,255,.6)}
+.fname{margin-top:12px;font:12px/1.3 var(--mono);color:var(--faint);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sub{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:38px;margin-top:8px;border-radius:999px;font-size:14px;color:var(--muted);transition:background .2s,color .2s}
+.sub:hover{color:#fff;background:rgba(255,255,255,.06)}
+.sub .ic{font-size:16px}
+.phone-only{display:none!important}
+html[data-os="android"] .pc-only,html[data-os="ios"] .pc-only{display:none!important}
+html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{display:flex!important}
+.rel-note{margin-top:24px;text-align:center;font-size:14px;color:var(--faint)}
+.rel-note a{color:var(--muted);text-decoration:underline;text-decoration-color:rgba(255,255,255,.25);text-underline-offset:3px;transition:color .2s}
+.rel-note a:hover{color:#fff}
+@media (max-width:900px){.cards{grid-template-columns:1fr;max-width:520px;margin:0 auto}.card.rec{order:-1}}
+
+
+.howto{max-width:780px;margin:0 auto;padding:8px;border-radius:28px;background:linear-gradient(180deg,rgba(28,28,32,.72),rgba(12,12,15,.82));border:1px solid var(--line);box-shadow:0 40px 90px -40px rgba(0,0,0,.95)}
+.seg{--i:0;position:relative;display:grid;grid-template-columns:repeat(3,1fr);padding:5px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+.seg-ind{position:absolute;top:5px;bottom:5px;left:5px;width:calc((100% - 10px) / 3);border-radius:999px;background:#fff;box-shadow:0 8px 20px -8px rgba(255,255,255,.35);transform:translateX(calc(var(--i) * 100%));transition:transform .5s var(--ease)}
+.seg button{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;height:44px;border-radius:999px;font-size:15px;font-weight:500;color:var(--muted);transition:color .3s}
+.seg button:hover{color:#fff}
+.seg button[aria-selected="true"]{color:#000}
+.seg button .ic{font-size:17px}
+@media (max-width:420px){.seg button .ic{display:none}}
+.panel{padding:26px 22px 18px}
+.steps{display:grid;gap:16px;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:start;font-size:15.5px;line-height:1.55;color:var(--muted)}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;font-size:14px;font-weight:700;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1)}
+.steps li > div{padding-top:5px}
+.steps b{font-weight:600;color:var(--text)}
+.steps code{font:13.5px var(--mono);color:var(--text);background:rgba(255,255,255,.07);padding:1px 6px;border-radius:6px;word-break:break-all}
+.linkish{color:var(--text);text-decoration:underline;text-decoration-color:rgba(255,255,255,.35);text-underline-offset:3px}
+.tip{display:flex;gap:12px;margin-top:20px;padding:14px 16px;border-radius:16px;font-size:14px;line-height:1.55;color:var(--muted);background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.22)}
+.tip .ic{margin-top:2px;font-size:17px;color:var(--blue-l)}
+.tip b{color:var(--text);font-weight:600}
+
+
+.faq{display:grid;gap:10px;max-width:780px;margin:0 auto}
+.faq details{border-radius:18px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);transition:background .25s,border-color .25s}
+.faq details:hover{border-color:rgba(255,255,255,.12)}
+.faq details[open]{background:rgba(255,255,255,.055)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;border-radius:18px;font-size:16.5px;font-weight:500;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .ic{font-size:18px;color:var(--muted);transition:transform .35s var(--ease),color .2s}
+.faq details[open] summary .ic{transform:rotate(45deg);color:#fff}
+.faq .ans{padding:0 20px 18px;font-size:15px;line-height:1.6;color:var(--muted)}
+.faq .ans b{color:var(--text);font-weight:600}
+.faq .ans a{color:var(--blue-xl);text-decoration:underline;text-underline-offset:3px}
+
+
+.foot{display:flex;flex-direction:column;align-items:center;gap:18px;padding:clamp(80px,12vh,130px) 20px calc(44px + env(safe-area-inset-bottom));text-align:center}
+.foot-logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;letter-spacing:-.02em}
+.foot-logo svg{width:32px;height:32px;border-radius:9px}
+.foot-logo small{font-size:13px;font-weight:500;letter-spacing:0;color:var(--faint)}
+.socials{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.social{display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 16px 0 7px;border-radius:999px;font-size:14.5px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07);transition:background .2s,border-color .2s,transform .25s var(--ease)}
+.social:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);transform:translateY(-2px)}
+.social:active{transform:scale(.98)}
+.social .s-ic{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;font-size:17px;color:#fff}
+.social.ig .s-ic{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285aeb 90%)}
+.social.dc .s-ic{background:#5865f2}
+.social small{font-size:12.5px;color:var(--faint)}
+.made{display:flex;align-items:center;justify-content:center;gap:5px;font-size:13px;color:var(--faint)}
+.made .ic{font-size:13px;color:var(--blue)}
+.host{font-size:12.5px;color:var(--faint)}
+
+/* =====================================================================
+   QR CODE
+   ===================================================================== */
+.qr-dlg{margin:auto;width:min(380px,calc(100vw - 28px));max-height:calc(100dvh - 28px);padding:30px 24px 22px;border:1px solid rgba(255,255,255,.09);border-radius:26px;color:var(--text);text-align:center;overflow:auto;
+  background:radial-gradient(120% 55% at 50% 0%,rgba(59,130,246,.2),transparent 62%),linear-gradient(180deg,rgba(28,28,32,.98),rgba(12,12,15,.99));
+  box-shadow:0 40px 100px -30px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.06)}
+.qr-dlg[open]{animation:dlgIn .45s var(--ease)}
+.qr-dlg::backdrop{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+@keyframes dlgIn{from{opacity:0;transform:translateY(12px) scale(.96)}}
+.dlg-x{position:absolute;top:12px;right:12px;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;font-size:18px;color:var(--muted);transition:background .2s,color .2s}
+.dlg-x:hover{background:rgba(255,255,255,.08);color:#fff}
+.qr-dlg h2{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.qr-dlg p{margin-top:8px;font-size:14.5px;line-height:1.55;color:var(--muted);text-wrap:balance}
+.qr-box{width:224px;height:224px;margin:20px auto 0;padding:12px;border-radius:22px;background:#fff;box-shadow:0 20px 50px -20px rgba(0,0,0,.9)}
+.qr-box svg{width:100%;height:100%}
+.qr-dlg .qr-url{margin-top:14px;font:12px/1.4 var(--mono);color:var(--faint);word-break:break-all}
+.qr-dlg .qr-warn{margin-top:14px;padding:10px 12px;border-radius:12px;font-size:13px;color:#fde68a;background:rgba(120,53,15,.35);border:1px solid rgba(251,191,36,.25)}
+
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));z-index:60;display:flex;align-items:center;gap:12px;max-width:calc(100vw - 24px);padding:8px 8px 8px 10px;border-radius:999px;font-size:14.5px;
+  background:rgba(26,26,28,.92);border:1px solid rgba(255,255,255,.1);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:0 20px 50px -20px rgba(0,0,0,.95);
+  transform:translate(-50%,24px);opacity:0;visibility:hidden;transition:transform .45s var(--ease),opacity .3s,visibility 0s linear .45s}
+.toast.show{transform:translate(-50%,0);opacity:1;visibility:visible;transition:transform .45s var(--ease),opacity .3s,visibility 0s}
+.toast.no-act{padding-right:18px}
+.t-ic{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;font-size:14px;color:#052e16;background:#4ade80}
+.t-ic .ic{stroke-width:3}
+.t-msg{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t-act{flex:none;display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:999px;font-size:13.5px;font-weight:600;color:#000;background:#fff}
+
+
+.js .reveal{opacity:0}
+.js .reveal.in{animation:rise .9s var(--ease) both;animation-delay:var(--d,0s)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.5v11.5"/><path d="m7 10.5 5 5 5-5"/><path d="M4.5 20.5h15"/></symbol>
+  <symbol id="i-windows" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M3 3h8.4v8.4H3zM12.6 3H21v8.4h-8.4zM3 12.6h8.4V21H3zM12.6 12.6H21V21h-8.4z"/></symbol>
+  <symbol id="i-android" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M3.5 18a8.5 8.5 0 0 1 17 0zM8.6 13.3a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zm6.8 0a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z"/><path d="M7.4 11.4 5.5 8.3M16.6 11.4l1.9-3.1" stroke-width="1.8"/></symbol>
+  <symbol id="i-usb" viewBox="0 0 24 24"><rect x="6.5" y="9.5" width="11" height="12" rx="2.5"/><path d="M8.5 9.5v-6a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v6"/><path d="M11 5.5v1.2M13 5.5v1.2"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="6.5" height="6.5" rx="1.2"/><rect x="14.5" y="3" width="6.5" height="6.5" rx="1.2"/><rect x="3" y="14.5" width="6.5" height="6.5" rx="1.2"/><path d="M14.5 14.5h2.5v2.5M21 14.5v.01M14.5 21h.01M17.5 21H21v-3.5"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M19 10.5v1a7 7 0 0 1-14 0v-1M12 18.5V22"/></symbol>
+  <symbol id="i-bars" viewBox="0 0 24 24"><path d="M3 10v4M7.5 6v12M12 3v18M16.5 7.5v9M21 10v4"/></symbol>
+  <symbol id="i-library" viewBox="0 0 24 24"><path d="M21 15V6"/><circle cx="18.5" cy="15.5" r="2.5"/><path d="M12 12H3M16 6H3M12 18H3"/></symbol>
+  <symbol id="i-infinity" viewBox="0 0 24 24"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16.5v-5M12 8h.01"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><path d="M17.4 6.6h.01"/></symbol>
+  <symbol id="i-discord" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></symbol>
+</svg>
+
+<div class="bg" aria-hidden="true"></div>
+
+<div class="cfg" id="cfg" hidden>
+  <span><b>Falta configurar:</b> abra este <code>index.html</code>, procure <code>CONFIG</code> e coloca as coisas celeste seu burro.</span>
+</div>
+
+<header class="top wrap">
+  <a class="brand" href="#topo" aria-label="celeste.dev — voltar ao topo">celeste<span class="blue-dev">.dev</span></a>
+  <nav class="top-nav" aria-label="Atalhos">
+    <a class="chip hide-sm" href="#instalar"><svg class="ic"><use href="#i-info"/></svg><span>Como instalar</span></a>
+    <a class="chip" data-web href="#" hidden><svg class="ic"><use href="#i-globe"/></svg><span>Versão web</span></a>
+  </nav>
+</header>
+
+<main id="topo">
+
+  <section class="hero" aria-labelledby="titulo">
+    <div class="hero-glow" aria-hidden="true"><div class="hero-aura"></div></div>
+    <div style="--i:0">
+      <div class="app-icon">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#111"/><path class="wave" pathLength="100" d="M10 34c6 0 6-12 12-12s6 20 12 20 6-24 12-24 6 16 8 16" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <p class="eyebrow" style="--i:1"><span class="dot" aria-hidden="true"></span><span>Versão <span data-version>1.0</span></span><span class="sep" data-selo-wrap aria-hidden="true">·</span><span data-selo>beta aberta</span></p>
+    <h1 class="title" id="titulo" style="--i:2">Onda</h1>
+    <p class="lead" style="--i:3">Busque qualquer música e ouça com karaokê sincronizado, visualizers e modos imersivos. Agora no seu PC e no seu celular.</p>
+    <div class="cta-box" style="--i:4">
+      <a class="cta" id="cta" href="#baixar">
+        <span class="cta-in"><svg class="ic" id="ctaIc"><use href="#i-download"/></svg><span id="ctaLabel">Ver downloads</span></span>
+      </a>
+      <p class="cta-meta" id="ctaMeta">Disponível para Windows e Android</p>
+      <p class="cta-alt" data-for-os="windows" hidden>Prefere não instalar? <a data-dl="portable" href="#baixar">Baixe o portable</a></p>
+      <p class="cta-alt" data-for-os="android" hidden>Vai usar no PC? <a href="#baixar">Veja as versões para Windows</a></p>
+      <p class="cta-alt" data-for-os="other" hidden><span data-web-text>Enquanto isso, <a data-web href="#">use o Onda no navegador</a>.</span></p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="feats" aria-label="Destaques do Onda">
+      <div class="feat reveal"><span class="feat-ic"><svg class="ic"><use href="#i-mic"/></svg></span><div><b>Karaokê sincronizado</b><span>A letra acompanha a voz, linha por linha.</span></div></div>
+      <div class="feat reveal"><span class="feat-ic"><svg class="ic"><use href="#i-bars"/></svg></span><div><b>Visualizers</b><span>Círculo, barras, ondas e partículas no ritmo.</span></div></div>
+      <div class="feat reveal"><span class="feat-ic"><svg class="ic"><use href="#i-library"/></svg></span><div><b>Suas playlists</b><span>Monte listas e salve as suas favoritas.</span></div></div>
+      <div class="feat reveal"><span class="feat-ic"><svg class="ic"><use href="#i-infinity"/></svg></span><div><b>A música nunca para</b><span>Quando a lista acaba, entram músicas parecidas.</span></div></div>
+    </section>
+
+
+    <section class="sec" id="baixar" aria-labelledby="t-baixar">
+      <header class="sec-head reveal">
+        <span class="kicker">Downloads</span>
+        <h2 id="t-baixar">Escolha a sua versão</h2>
+        <p>Download direto, sem cadastro. É o mesmo Onda em todas elas.</p>
+      </header>
+
+      <div class="cards">
+        <article class="card reveal" id="windows" data-card="instalador" aria-labelledby="t-inst">
+          <span class="rec-badge"><svg class="ic"><use href="#i-check"/></svg>Recomendado para você</span>
+          <div class="card-head">
+            <span class="plat-ic win"><svg class="ic"><use href="#i-windows"/></svg></span>
+            <div><h3 id="t-inst">Instalador</h3><p class="plat">Windows 10 e 11 · <span data-ext="instalador">.exe</span></p></div>
+          </div>
+          <p class="desc">Instala o Onda no seu PC como qualquer outro programa. É o jeito mais fácil de começar.</p>
+          <ul class="meta">
+            <li><span>Tamanho</span><b data-size="instalador">—</b></li>
+            <li><span>Versão</span><b data-fver="instalador">1.0</b></li>
+          </ul>
+          <a class="btn" data-dl="instalador" href="#baixar"><svg class="ic"><use href="#i-download"/></svg>Baixar instalador</a>
+          <a class="sub" href="#instalar" data-howto="instalador"><svg class="ic"><use href="#i-info"/></svg>Como instalar</a>
+          <p class="fname" data-name="instalador">Onda-Setup-v1.0.exe</p>
+        </article>
+
+        <article class="card reveal" id="portable" data-card="portable" aria-labelledby="t-port">
+          <span class="rec-badge"><svg class="ic"><use href="#i-check"/></svg>Recomendado para você</span>
+          <div class="card-head">
+            <span class="plat-ic usb"><svg class="ic"><use href="#i-usb"/></svg></span>
+            <div><h3 id="t-port">Portable</h3><p class="plat">Windows 10 e 11 · sem instalar</p></div>
+          </div>
+          <p class="desc">Não precisa instalar: é só abrir. Ideal para pendrive ou para PCs onde você não pode instalar programas.</p>
+          <ul class="meta">
+            <li><span>Tamanho</span><b data-size="portable">—</b></li>
+            <li><span>Versão</span><b data-fver="portable">1.0</b></li>
+          </ul>
+          <a class="btn" data-dl="portable" href="#baixar"><svg class="ic"><use href="#i-download"/></svg>Baixar portable</a>
+          <a class="sub" href="#instalar" data-howto="portable"><svg class="ic"><use href="#i-info"/></svg>Como usar o portable</a>
+          <p class="fname" data-name="portable">Onda-Portable-v1.0.exe</p>
+        </article>
+
+        <article class="card reveal" id="android" data-card="apk" aria-labelledby="t-apk">
+          <span class="rec-badge"><svg class="ic"><use href="#i-check"/></svg>Recomendado para você</span>
+          <div class="card-head">
+            <span class="plat-ic droid"><svg class="ic"><use href="#i-android"/></svg></span>
+            <div><h3 id="t-apk">Android</h3><p class="plat">Celular e tablet · <span data-ext="apk">.apk</span></p></div>
+          </div>
+          <p class="desc">Para celulares e tablets Android. Baixe o APK e instale em poucos toques.</p>
+          <ul class="meta">
+            <li><span>Tamanho</span><b data-size="apk">—</b></li>
+            <li><span>Versão</span><b data-fver="apk">1.0</b></li>
+          </ul>
+          <a class="btn" data-dl="apk" href="#baixar"><svg class="ic"><use href="#i-download"/></svg>Baixar APK</a>
+          <button class="sub pc-only" type="button" data-open-qr><svg class="ic"><use href="#i-qr"/></svg>Mandar para o celular (QR code)</button>
+          <a class="sub phone-only" href="#instalar" data-howto="apk"><svg class="ic"><use href="#i-info"/></svg>Como instalar o APK</a>
+          <p class="fname" data-name="apk">Onda-v1.0.apk</p>
+        </article>
+      </div>
+
+      <p class="rel-note reveal"><span data-date-wrap hidden>Publicado em <span data-date></span> · </span><a data-releases href="#" target="_blank" rel="noopener">Todas as versões no GitHub</a></p>
+    </section>
+
+    <section class="sec" id="instalar" aria-labelledby="t-inst2">
+      <header class="sec-head reveal">
+        <span class="kicker">Passo a passo</span>
+        <h2 id="t-inst2">Como instalar</h2>
+        <p>Leva menos de um minuto. Escolha a versão que você baixou:</p>
+      </header>
+
+      <div class="howto reveal">
+        <div class="seg" role="tablist" aria-label="Versão baixada">
+          <span class="seg-ind" aria-hidden="true"></span>
+          <button type="button" role="tab" id="tab-instalador" data-tab="instalador" aria-controls="p-instalador" aria-selected="true"><svg class="ic"><use href="#i-windows"/></svg>Instalador</button>
+          <button type="button" role="tab" id="tab-portable" data-tab="portable" aria-controls="p-portable" aria-selected="false" tabindex="-1"><svg class="ic"><use href="#i-usb"/></svg>Portable</button>
+          <button type="button" role="tab" id="tab-apk" data-tab="apk" aria-controls="p-apk" aria-selected="false" tabindex="-1"><svg class="ic"><use href="#i-android"/></svg>Android</button>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-instalador" aria-labelledby="tab-instalador">
+          <ol class="steps">
+            <li><div>Baixe o arquivo <code data-name="instalador">Onda-Setup-v1.0.exe</code>. Se o navegador disser que o arquivo “não é baixado com frequência”, escolha <b>Manter</b>.</div></li>
+            <li><div>Abra o arquivo baixado (ele fica na pasta <b>Downloads</b>).</div></li>
+            <li><div>Se aparecer <b>“O Windows protegeu o computador”</b>, clique em <b>Mais informações</b> e depois em <b>Executar assim mesmo</b>.</div></li>
+            <li><div>Siga o instalador. Quando terminar, é só abrir o Onda e dar play.</div></li>
+          </ol>
+          <p class="tip"><svg class="ic"><use href="#i-info"/></svg><span>O aviso azul do Windows é comum em programas novos e independentes. Baixe sempre por esta página para ter o arquivo original.</span></p>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-portable" aria-labelledby="tab-portable" hidden>
+          <ol class="steps">
+            <li><div>Baixe o arquivo <code data-name="portable">Onda-Portable-v1.0.exe</code>.</div></li>
+            <li data-if-exe><div>Coloque o arquivo onde quiser: na área de trabalho, numa pasta ou num pendrive.</div></li>
+            <li data-if-exe><div>Dê dois cliques para abrir. <b>Nada é instalado</b> no computador.</div></li>
+            <li data-if-zip hidden><div>Clique com o botão direito no arquivo e escolha <b>Extrair tudo</b>.</div></li>
+            <li data-if-zip hidden><div>Abra a pasta extraída e dê dois cliques no <b>Onda</b>. Nada é instalado no computador.</div></li>
+            <li><div>Se aparecer <b>“O Windows protegeu o computador”</b>, clique em <b>Mais informações</b> → <b>Executar assim mesmo</b>.</div></li>
+          </ol>
+          <p class="tip"><svg class="ic"><use href="#i-info"/></svg><span>Dica: guarde o portable num pendrive e use o Onda em qualquer PC com Windows.</span></p>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-apk" aria-labelledby="tab-apk" hidden>
+          <ol class="steps">
+            <li><div>No celular, toque em <b>Baixar APK</b>.<span class="pc-only"> Está no PC? Use o <button class="linkish" type="button" data-open-qr>QR code</button>.</span></div></li>
+            <li><div>Se o navegador avisar que o arquivo pode ser perigoso, confirme que quer baixar.</div></li>
+            <li><div>Abra o arquivo <code data-name="apk">Onda-v1.0.apk</code>: ele aparece nas notificações ou em <b>Arquivos › Downloads</b>.</div></li>
+            <li><div>Se o Android pedir permissão, toque em <b>Configurações</b>, ative <b>Permitir desta fonte</b> e volte.</div></li>
+            <li><div>Toque em <b>Instalar</b>. Se o Play Protect mostrar um aviso, toque em <b>Mais detalhes</b> → <b>Instalar mesmo assim</b>.</div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="sec" id="duvidas" aria-labelledby="t-faq">
+      <header class="sec-head reveal">
+        <span class="kicker">Dúvidas</span>
+        <h2 id="t-faq">Perguntas frequentes</h2>
+      </header>
+      <div class="faq">
+        <details class="reveal">
+          <summary>Instalador ou portable: qual eu escolho?<svg class="ic"><use href="#i-plus"/></svg></summary>
+          <div class="ans">Na dúvida, fique com o <b>instalador</b>: ele coloca o Onda no seu PC como um programa normal. O <b>portable</b> abre direto do arquivo, sem instalar nada. É bom para pendrive ou para computadores onde você não tem permissão para instalar programas.</div>
+        </details>
+        <details class="reveal">
+          <summary>Por que o Windows avisa que o app é desconhecido?<svg class="ic"><use href="#i-plus"/></svg></summary>
+          <div class="ans">O Windows mostra a tela <b>“O Windows protegeu o computador”</b> para programas novos, que ainda são baixados por pouca gente ou não têm certificado de assinatura digital. Para abrir, clique em <b>Mais informações</b> → <b>Executar assim mesmo</b>. Baixe sempre por esta página para ter o arquivo original.</div>
+        </details>
+        <details class="reveal">
+          <summary>Tenho iPhone ou Mac. Dá para usar?<svg class="ic"><use href="#i-plus"/></svg></summary>
+          <div class="ans">Ainda não tem versão para iPhone, iPad ou Mac.<span data-web-text> Mas dá para usar o Onda direto no navegador: <a data-web href="#">INDISPONIVEL</a>.</span></div>
+        </details>
+        <details class="reveal">
+          <summary>Como atualizar para uma versão nova?<svg class="ic"><use href="#i-plus"/></svg></summary>
+          <div class="ans">Volte a esta página e baixe de novo: ela sempre mostra a versão mais recente. No PC, é só instalar a versão nova; no Android, instale o APK novo por cima do antigo.</div>
+        </details>
+        <details class="reveal">
+          <summary>Precisa de internet?<svg class="ic"><use href="#i-plus"/></svg></summary>
+          <div class="ans">Sim. O Onda busca as músicas, as letras e os vídeos pela internet enquanto você ouve.</div>
+        </details>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-logo">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#111"/><path d="M10 34c6 0 6-12 12-12s6 20 12 20 6-24 12-24 6 16 8 16" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Onda</span><small>v<span data-version>1.0</span></small>
+  </div>
+  <div class="socials">
+    <a class="social ig" href="https://www.instagram.com/skyzz764/" target="_blank" rel="noopener noreferrer" title="Abrir o Instagram (nova aba)"><span class="s-ic"><svg class="ic"><use href="#i-instagram"/></svg></span><span>@skyzz764</span></a>
+    <button class="social dc" type="button" data-copy="celestedev_" title="Copiar o usuário do Discord"><span class="s-ic"><svg class="ic"><use href="#i-discord"/></svg></span><span>celestedev_</span><small>copiar</small></button>
+  </div>
+  <p class="made"><span>feito com</span><svg class="ic"><use href="#i-heart"/></svg><span>por celeste · <span id="year">2026</span></span></p>
+  <p class="host" data-gh-only>Os arquivos são baixados direto do GitHub.</p>
+</footer>
+
+
+<dialog class="qr-dlg" id="qrDlg" aria-labelledby="qrT">
+  <button class="dlg-x" type="button" data-close aria-label="Fechar"><svg class="ic"><use href="#i-x"/></svg></button>
+  <h2 id="qrT">Baixe no celular</h2>
+  <p>Aponte a câmera do seu Android para o código. A página abre já na versão para celular.</p>
+  <div class="qr-box" id="qrBox"></div>
+  <p class="qr-url" id="qrUrl"></p>
+  <p class="qr-warn" id="qrWarn" hidden>O QR code só funciona depois que o site estiver publicado. Agora ele está aberto direto do seu computador.</p>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span class="t-ic" aria-hidden="true"><svg class="ic"><use href="#i-check"/></svg></span>
+  <span class="t-msg" id="toastMsg"></span>
+  <a class="t-act" id="toastAct" href="#instalar" hidden>Como instalar</a>
+</div>
+
+<script>
+
+window.leanQR = (function () { 'use strict'; var exports = {};
+"use strict";const t=[.2,3/8,5/9,2/3],o=(o,e)=>r=>{const s=4*o+r-4,n="*-04-39?2$%%$%%'$%''%'''%')(%'))%(++'(++'(+.'+-.',/3',33)-/5)-43).36)058*18<+37<+4:<,4:E,5<A-7>C/8@F/:EH/<EK0=FM1?IP2@KS3BNV4DPY5FS\\6HV_6IXb7K[e8N^i9Pam;Rdp<Tgt".charCodeAt(s)-35,f=s>8?n:1,c=e/f|0,i=e%f,l=f-i,a=s>8?c*t[r]+(o>5)&-2:n,_=c-a;return{t:l*_+i*_+i,o:[[l,_],[i,_+1]],i:a}},e=t=>new Uint8Array(t),r=t=>{const o=new Error(`lean-qr error ${t}`);throw o.code=t,o},s=t=>"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".indexOf(t),n=t=>t.charCodeAt(0),f=(...t)=>(o,e)=>t.forEach(t=>t(o,e)),c=t=>o=>{o.eci!==t&&(o.push(7,4),t<128?o.push(t,8):t<16384?o.push(32768|t,16):o.push(12582912|t,24),o.eci=t)},i=t=>(o,e)=>{o.push(4,4),o.push(t.length,8+8*(e>9)),t.forEach(t=>o.push(t,8))},l=(t,o,e,r,s=(t,o)=>e(t.length,o),n=(r?o=>f(c(r),t(o)):t))=>(n.test=o,n.l=e,n.est=s,n.eci=r&&[r],n),a=l(t=>(o,e)=>{o.push(1,4),o.push(t.length,10+2*(e>26)+2*(e>9));let r=0;for(;r<t.length-2;r+=3)o.push(+t.slice(r,r+3),10);r<t.length-1?o.push(+t.slice(r),7):r<t.length&&o.push(+t[r],4)},t=>/[0-9]/.test(t),(t,o)=>14+2*(o>26)+2*(o>9)+10*t/3),_=l(t=>(o,e)=>{o.push(2,4),o.push(t.length,9+2*(e>26)+2*(e>9));let r=0;for(;r<t.length-1;r+=2)o.push(45*s(t[r])+s(t[r+1]),11);r<t.length&&o.push(s(t[r]),6)},t=>s(t)>=0,(t,o)=>13+2*(o>26)+2*(o>9)+5.5*t),u=l(t=>i([...t].map(n)),t=>n(t)<128,(t,o)=>12+8*(o>9)+8*t);u._=!0,u.u=!0;const d=l(u,t=>n(t)<256,u.l,3);d._=!0;const p=new TextEncoder,m=l(t=>i(p.encode(t)),()=>1,0,26,(t,o)=>12+8*(o>9)+8*p.encode(t).length);m._=!0;let h=()=>{const t=new Map,o=new TextDecoder("sjis"),r=e(2);for(let e=0;e<7973;++e)r[0]=e/192+129+64*(e>5951),r[1]=e%192+64,t.set(o.decode(r),e);return t.delete("\ufffd"),h=()=>t,t};const w=l(t=>(o,e)=>{o.push(8,4),o.push(t.length,8+2*(e>26)+2*(e>9));for(const e of t)o.push(h().get(e),13)},t=>h().has(t),(t,o)=>12+2*(o>26)+2*(o>9)+13*t);w._=!0;const y=[a,_,u,d,w,m],g={auto:(t,{modes:o=y}={})=>(e,s)=>{const n=o.map((o,e)=>{const r=new Map,n=(t,o)=>(r.has(t)||r.set(t,o(t,s)),r.get(t));return{m:o,h:1<<e,C:o.est("",s),S:o.l?(t,e)=>n(e-t,o.l):(e,r)=>n(t.slice(e,r),o.est)}});let f=[{v:0}],c=0,i=0,l=-1;for(const o of[...t,""]){let t=0;if(o)for(const e of n)e.m.test(o)&&(t|=e.h);if(!o||t!==l){if(-1!==l){const t=new Set(f.map(t=>t.D)),o=[];for(const{m:e,C:r,S:s,h:a}of n)if(l&a){const n=s(c,i);for(const l of e.eci??t)if(!e.u||!l){let t;for(const o of f)if(o.D===l||e.eci){const f=o.m===e&&o.D===l,a=f?o.V:o,_=e._&&f?o.v+n-r:a.v+12*(a.D!==l)+(f?s(f?o.$:c,i):n);(!t||_<t.v)&&(t={$:f?o.$:c,V:a,m:e,D:l,A:i,v:_})}t&&o.push(t)}}f=o}l=t,c=i}i+=o.length}f.length||r(5);const a=[];for(let o=f.reduce((t,o)=>o.v<t.v?o:t);o.m;o=o.V)a.push(o.m(t.slice(o.$,o.A)));a.reverse().forEach(t=>t(e,s))},multi:f,eci:c,bytes:i,numeric:a,alphaNumeric:_,ascii:u,iso8859_1:d,shift_jis:w,utf8:m},x=()=>({F:e(2956),I:0,push(t,o){for(let e=o,r=8-(7&this.I);e>0;e-=r,r=8)this.F[this.I>>3]|=t<<r>>e,this.I+=e<r?e:r}}),b=(t,o=t*t,r=e(o))=>({size:t,K:r,get:(o,e)=>o>=0&&o<t&&!!(1&r[e*t+o]),toString({on:o="##",off:e="  ",lf:r="\n",pad:s=4,padX:n=s,padY:f=s}={}){let c="";for(let s=-f;s<t+f;++s){for(let r=-n;r<t+n;++r)c+=this.get(r,s)?o:e;c+=r}return c},toImageData(o,{on:e=[0,0,0],off:r=[0,0,0,0],pad:s=4,padX:n=s,padY:f=s}={}){const c=t+2*n,i=t+2*f,l=o.createImageData(c,i),a=new Uint32Array(l.data.buffer);l.data.set([...e,255]);const _=a[0];l.data.set([...r,255]);const u=a[0];for(let t=0;t<i;++t)for(let o=0;o<c;++o)a[t*c+o]=this.get(o-n,t-f)?_:u;return l},toCanvas(t,o){const e=t.getContext("2d"),r=this.toImageData(e,o);t.width=r.width,t.height=r.height,e.putImageData(r,0,0)},toDataURL({type:t="image/png",scale:o=1,...e}={}){const r=document.createElement("canvas"),s=r.getContext("2d"),n=this.toImageData(s,e);return r.width=n.width*o,r.height=n.height*o,s.putImageData(n,0,0),s.imageSmoothingEnabled=!1,s.globalCompositeOperation="copy",s.drawImage(r,0,0,n.width,n.height,0,0,r.width,r.height),r.toDataURL(t,1)}}),C=[(t,o)=>1&(t^o),(t,o)=>1&o,t=>t%3,(t,o)=>(t+o)%3,(t,o)=>1&(t/3^o>>1),(t,o)=>(t&o&1)+t*o%3,(t,o)=>(t&o)+t*o%3&1,(t,o)=>(t^o)+t*o%3&1],z=e(511);for(let t=0,o=1;t<255;o=2*o^285*(o>127))z[z[o+255]=t++]=o;const E=t=>z[t%255],M=t=>z[t+255],S=(t,o)=>{const r=e(t.length+o.length-1);for(let e=0;e<t.length;++e)for(let s=0;s<o.length;++s)r[e+s]^=E(t[e]+o[s]);return r.map(M)},v=(t,o)=>{const r=e(t.length+o.length-1);r.set(t,0);for(let e=0;e<t.length;++e)if(r[e]){const t=M(r[e]);for(let s=0;s<o.length;++s)r[e+s]^=E(o[s]+t)}return r.slice(t.length)},D=[[0],[0,0]];for(let t=1;t<30;++t)D.push(S(D[t],[0,t]));const L=(t,o)=>{const r=[[],[]];let s=0,n=0;for(const[e,f]of o.o)for(let c=0;c<e;++c,s+=f){const e=t.slice(s,s+f);r[0].push(e),r[1].push(v(e,D[o.i])),n+=f+o.i}const f=e(n);n=0;for(const t of r)for(let o=0,e=-1;e<n;++o){e=n;for(const e of t)o<e.length&&(f[n++]=e[o])}return f},V=(t,o,e)=>{let r=t<<=e;for(let t=134217728;t>>=1;)r&t&&(r^=o*(t>>e));return r|t},$=({size:t,K:o},e)=>{const r=(e,r,s,n)=>{for(;s-- >0;e+=t)o.fill(n,e,e+r)},s=(o,e,s)=>{for(let n=0;n++<3;s-=2)r(e*t+o-(s>>1)*(t+1),s,s,2|n)},n=2*((t-13)/(1+(e/7|0))/2+.75|0);if(e>1)for(let o=t-7;o>8;o-=n){for(let t=o;t>8;t-=n)s(o,t,5);o<t-7&&s(o,6,5)}if(e>6)for(let r=V(e,7973,12),s=1;s<7;++s)for(let e=12;e-- >9;r>>=1)o[s*t-e]=2|1&r;r(7,2,9,2),r(t-8,8,9,2);for(let e=0;e<t;++e)o[6*t+e]=3^1&e;s(3,3,7),s(t-4,3,7);for(let e=0;e<t;++e)for(let r=e;r<t;++r)o[r*t+e]=o[e*t+r];o[(t-8)*t+8]=3},A=({size:t,K:o})=>{const e=[];for(let r=t-2,s=t,n=-1;r>=0;r-=2){for(5===r&&(r=4);s+=n,-1!==s&&s!==t;){const n=s*t+r;o[n+1]||e.push(n+1),o[n]||e.push(n)}n*=-1}return e},F=({K:t},o,e)=>o.forEach((o,r)=>t[o]=e[r>>3]>>(7&~r)&1),H=({size:t,K:o},e,r,s)=>{for(let r=0;r<t;++r)for(let s=0;s<t;++s){const n=r*t+s;o[n]^=!(e(s,r)||2&o[n])}let n=21522^V((1^s)<<3|r,1335,10);for(let e=0;e++<8;n>>=1)o[(e-(e<7))*t+8]=1&n,o[9*t-e]=1&n;for(let e=8;--e,n;n>>=1)o[8*t+e-(e<7)]=1&n,o[(t-e)*t+8]=1&n},I=({size:t,K:o},e=0,r=0)=>{for(let s=0;s<t;++s){for(let n=0;n<2;++n)for(let f,c=0,i=0,l=2;c<t;++c){const a=1&o[n?s*t+c:c*t+s];r+=a,i=(i>>1|2098176)&(3047517^a-1),2049&i&&(e+=40),a^l&&(f=0),l=a,e+=5===++f?3:f>5}if(s)for(let r=t+s,n=5*o[s-1]^o[s];r<t*t;r+=t){const t=5*o[r-1]^o[r];e+=3*!(1&(n|t)|4&(n^t)),n=t}}return e+10*(10*Math.abs(r/(t*t)-1)|0)},K=[],N=(t=r(1),{minCorrectionLevel:e=0,maxCorrectionLevel:s=3,minVersion:n=1,maxVersion:f=40,mask:c,trailer:i=60433,...l}={})=>{s<e&&r(3),f<n&&r(2),"string"==typeof t&&(t=g.auto(t,l));for(let r=n,l=0;r<=f;++r){let n=K[r];n||(K[r]=n=b(4*r+17),$(n,r),n.p=A(n));const f=o(r,n.p.length>>3);if(8*f(e).t<l)continue;const a=x();t(a,r),l=a.I;for(let t=s;t>=e;--t){const o=f(t);if(8*o.t<l)continue;for(a.I=l+11&-8;a.I<8*o.t;)a.push(i,16);const e=b(n.size,n.K);return F(e,n.p,L(a.F,o)),(C[c]?[C[c]]:C).map((o,r)=>{const s=b(e.size,e.K);return H(s,o,c??r,t),s.s=C[c]?0:I(s),s}).reduce((t,o)=>o.s<t.s?o:t)}}r(4)};N.with=(...t)=>(o,e)=>N(o,{modes:[...y,...t],...e}),exports.correction={min:0,L:0,M:1,Q:2,H:3,max:3},exports.generate=N,exports.mode=g;
+return exports; })();
+</script>
+
+<script>
+(() => {
+'use strict';
+
+
+const CONFIG = {
+
+  githubUsuario: 'dependetanto7-code',
+  githubRepositorio: 'onda',
+
+
+  versao: 'v1.0.1',
+
+
+  arquivos: {
+    instalador: { nome: 'Onda-Setup-v1.0.exe',    tamanho: '' },
+    portable:   { nome: 'Onda-Portable-v1.0.exe', tamanho: '' },
+    apk:        { nome: 'Onda-v1.0.apk',          tamanho: '94,7 KB' },
+  },
+
+
+  siteWeb: '',
+
+
+  selo: 'beta aberta',
+};
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const KEYS = ['instalador', 'portable', 'apk'];
+const USER = String(CONFIG.githubUsuario || '').trim();
+const REPO = String(CONFIG.githubRepositorio || '').trim();
+const CONFIGURED = /^[a-z\d][a-z\d-]{0,38}$/i.test(USER) && !/^seu-usuario$/i.test(USER) && /^[\w.-]+$/.test(REPO);
+const ALL_URLS = ['instalador', 'portable', 'apk'].every(k => CONFIG.arquivos && CONFIG.arquivos[k] && CONFIG.arquivos[k].url);
+const WEB = String(CONFIG.siteWeb || '').trim();
+const SELO = String(CONFIG.selo || '').trim();
+const root = document.documentElement;
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+const nf = new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 1 });
+function fmtBytes(b) {
+  b = Number(b);
+  if (!(b > 0)) return '';
+  const u = ['B', 'KB', 'MB', 'GB'];
+  let i = 0;
+  while (b >= 1024 && i < u.length - 1) { b /= 1024; i++; }
+  return (i ? nf.format(b) : Math.round(b)) + ' ' + u[i];
+}
+function fmtDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return isNaN(d) ? '' : new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' }).format(d);
+}
+const ver = tag => String(tag || '').trim().replace(/^v(?=\d)/i, '');
+const ext = name => { const m = /\.([a-z0-9]{1,8})$/i.exec(String(name || '')); return m ? m[1].toLowerCase() : ''; };
+const ghName = name => String(name || '').trim().replace(/\s+/g, '.');     // o GitHub troca espaços por pontos no nome dos arquivos
+
+function dlUrl(tag, name) {
+  if (!CONFIGURED || !name) return '#baixar';
+  return 'https://github.com/' + USER + '/' + REPO + '/releases/download/' + encodeURIComponent(tag) + '/' + encodeURIComponent(ghName(name));
+}
+
+
+const state = { tag: CONFIG.versao, date: '', files: {} };
+KEYS.forEach(k => {
+  const f = (CONFIG.arquivos && CONFIG.arquivos[k]) || {};
+  state.files[k] = { name: f.nome || '', size: f.tamanho || '', tag: CONFIG.versao, url: f.url || dlUrl(CONFIG.versao, f.nome) };
+});
+
+  function detectOS() {
+  const ua = navigator.userAgent || '';
+  const p = String((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '').toLowerCase();
+  if (/android/i.test(ua) || p === 'android') return 'android';
+  if (/iphone|ipad|ipod/i.test(ua) || (p.includes('mac') && navigator.maxTouchPoints > 1)) return 'ios';
+  if (p.includes('win') || /windows/i.test(ua)) return 'windows';
+  if (p.includes('mac')) return 'mac';
+  if (/linux|cros|x11/i.test(p + ' ' + ua)) return 'linux';
+  return 'other';
+}
+const OS = detectOS();
+root.dataset.os = OS;
+const REC = location.hash === '#android' ? 'apk' : OS === 'windows' ? 'instalador' : OS === 'android' ? 'apk' : '';
+
+
+function render() {
+  $$('[data-version]').forEach(el => { el.textContent = ver(state.tag); });
+  KEYS.forEach(k => {
+    const f = state.files[k], e = ext(f.name);
+    $$('[data-dl="' + k + '"]').forEach(a => { a.href = f.url; });
+    $$('[data-size="' + k + '"]').forEach(el => { el.textContent = f.size || '—'; });
+    $$('[data-name="' + k + '"]').forEach(el => { el.textContent = f.name || '—'; });
+    $$('[data-ext="' + k + '"]').forEach(el => { el.textContent = e ? '.' + e : ''; });
+    $$('[data-fver="' + k + '"]').forEach(el => { el.textContent = ver(f.tag); });
+  });
+  const zip = /^(zip|7z|rar)$/.test(ext(state.files.portable.name));
+  $$('[data-if-zip]').forEach(el => { el.hidden = !zip; });
+  $$('[data-if-exe]').forEach(el => { el.hidden = zip; });
+  const d = fmtDate(state.date);
+  $$('[data-date]').forEach(el => { el.textContent = d; });
+  $$('[data-date-wrap]').forEach(el => { el.hidden = !d; });
+  renderCta();
+}
+
+function renderCta() {
+  const cta = $('#cta');
+  let k = '', label = 'Ver downloads', icon = 'download', info = 'Disponível para Windows e Android';
+  if (OS === 'windows') { k = 'instalador'; label = 'Baixar para Windows'; icon = 'windows'; }
+  else if (OS === 'android') { k = 'apk'; label = 'Baixar para Android'; icon = 'android'; }
+  if (k) {
+    const f = state.files[k];
+    cta.dataset.dl = k;
+    cta.href = f.url;
+    info = (k === 'apk' ? ['APK', 'v' + ver(f.tag), f.size] : ['Instalador', 'v' + ver(f.tag), f.size, 'Windows 10 e 11']).filter(Boolean).join(' · ');
+  } else {
+    delete cta.dataset.dl;
+    cta.href = '#baixar';
+    if (OS === 'ios') info = 'Ainda não há versão para iPhone e iPad.';
+    else if (OS === 'mac') info = 'Ainda não há versão para Mac.';
+    else if (OS === 'linux') info = 'Ainda não há versão para Linux.';
+  }
+  $('#ctaLabel').textContent = label;
+  $('#ctaIc use').setAttribute('href', '#i-' + icon);
+  $('#ctaMeta').textContent = info;
+  const group = k ? OS : 'other';
+  $$('[data-for-os]').forEach(el => { el.hidden = el.dataset.forOs !== group; });
+}
+
+
+async function fetchRelease() {
+  if (!CONFIGURED) return null;
+  const KEY = ('onda-dl:' + USER + '/' + REPO).toLowerCase();
+  try {
+    const c = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (c && Date.now() - c.t < 10 * 60 * 1000) return c.d;           // guarda por 10 min para não gastar o limite da API
+  } catch (e) {}
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 7000);
+  try {
+    const res = await fetch('https://api.github.com/repos/' + USER + '/' + REPO + '/releases/latest', { signal: ctrl.signal });
+    if (!res.ok) {
+      if (res.status === 404) console.warn('[Onda] Não achei nenhuma Release publicada em github.com/' + USER + '/' + REPO + '. Confira o CONFIG. Usando os links do CONFIG.');
+      return null;
+    }
+    const j = await res.json();
+    const d = {
+      tag: j.tag_name || '',
+      date: j.published_at || '',
+      assets: (j.assets || []).filter(a => a && (!a.state || a.state === 'uploaded')).map(a => ({ name: a.name, size: a.size, url: a.browser_download_url }))
+    };
+    try { localStorage.setItem(KEY, JSON.stringify({ t: Date.now(), d })); } catch (e) {}
+    return d;
+  } catch (e) {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+
+function pickAssets(assets) {
+  const used = new Set(), out = {};
+  const rank = (k, n) => k === 'apk' ? (/universal/i.test(n) ? 0 : /arm64|v8a|aarch64/i.test(n) ? 1 : 2) : (/arm|aarch/i.test(n) ? 1 : 0);
+  const take = (k, test) => {
+    if (out[k]) return;
+    const list = assets.filter(x => !used.has(x) && test(String(x.name || ''))).sort((a, b) => rank(k, a.name) - rank(k, b.name));
+    if (list[0]) { out[k] = list[0]; used.add(list[0]); }
+  };
+  KEYS.forEach(k => {
+    const n = CONFIG.arquivos && CONFIG.arquivos[k] && CONFIG.arquivos[k].nome;
+    if (n) take(k, name => name.toLowerCase() === ghName(n).toLowerCase());
+  });
+  take('apk', n => /\.apk$/i.test(n));
+  take('portable', n => /port[aá]t[ií]l|portable/i.test(n) && /\.(exe|zip|7z)$/i.test(n));
+  take('instalador', n => /setup|install|instalador/i.test(n) && /\.(exe|msi)$/i.test(n));
+  take('instalador', n => /\.(exe|msi)$/i.test(n));
+  take('portable', n => /\.(zip|7z)$/i.test(n));
+  take('portable', n => /\.exe$/i.test(n));
+  return out;
+}
+
+function applyRelease(d) {
+  const picked = pickAssets(d.assets || []);
+  if (d.tag) state.tag = d.tag;
+  state.date = d.date || '';
+  KEYS.forEach(k => {
+    const a = picked[k];
+    if (a) state.files[k] = { name: a.name, size: fmtBytes(a.size), tag: d.tag || CONFIG.versao, url: a.url };
+  });
+  render();
+}
+
+
+const tabs = $$('[role="tab"]');
+function selectTab(k, focus) {
+  const i = Math.max(0, KEYS.indexOf(k));
+  $('.seg').style.setProperty('--i', i);
+  tabs.forEach((t, j) => {
+    const on = j === i;
+    t.setAttribute('aria-selected', String(on));
+    t.tabIndex = on ? 0 : -1;
+    if (on && focus) t.focus();
+  });
+  KEYS.forEach((key, j) => { const p = $('#p-' + key); if (p) p.hidden = j !== i; });
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => selectTab(t.dataset.tab));
+  t.addEventListener('keydown', e => {
+    const n = tabs.length;
+    let j = -1;
+    if (e.key === 'ArrowRight') j = (i + 1) % n;
+    else if (e.key === 'ArrowLeft') j = (i - 1 + n) % n;
+    else if (e.key === 'Home') j = 0;
+    else if (e.key === 'End') j = n - 1;
+    if (j >= 0) { e.preventDefault(); selectTab(tabs[j].dataset.tab, true); }
+  });
+});
+
+
+const toastEl = $('#toast'), toastMsg = $('#toastMsg'), toastAct = $('#toastAct');
+let toastTimer = 0;
+function toast(msg, withHowto) {
+  toastMsg.textContent = msg;
+  toastAct.hidden = !withHowto;
+  toastEl.classList.toggle('no-act', !withHowto);
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), withHowto ? 7000 : 3200);
+}
+toastAct.addEventListener('click', () => toastEl.classList.remove('show'));
+
+
+document.addEventListener('click', e => {
+  const h = e.target.closest('[data-howto]');
+  if (h) selectTab(h.dataset.howto);
+});
+
+
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[data-dl]');
+  if (!a) return;
+  const k = a.dataset.dl;
+  if (!CONFIGURED && !(CONFIG.arquivos[k] && CONFIG.arquivos[k].url)) {
+    e.preventDefault();
+    toast('Falta configurar o CONFIG no index.html.');
+    return;
+  }
+  selectTab(k);
+  toast(k === 'apk' ? 'Baixando o APK…' : 'Seu download começou.', true);
+});
+
+
+function qrSvg(text) {
+  const q = window.leanQR;
+  const code = q.generate(text, { minCorrectionLevel: q.correction.M });
+  const n = code.size;
+  let d = '';
+  for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) if (code.get(x, y)) d += 'M' + x + ' ' + y + 'h1v1h-1z';
+  return '<svg viewBox="-2 -2 ' + (n + 4) + ' ' + (n + 4) + '" shape-rendering="crispEdges" role="img" aria-label="QR code da página de download"><path fill="#000" d="' + d + '"/></svg>';
+}
+const dlg = $('#qrDlg');
+let qrReady = false;
+function openQR() {
+  if (!qrReady) {
+    const url = location.href.split('#')[0] + '#android';
+    try { $('#qrBox').innerHTML = qrSvg(url); } catch (e) { $('#qrBox').textContent = 'Não deu para gerar o QR code.'; }
+    $('#qrUrl').textContent = url.replace(/^https?:\/\//, '');
+    $('#qrWarn').hidden = /^https?:$/.test(location.protocol);
+    qrReady = true;
+  }
+  if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+}
+function closeQR() { if (typeof dlg.close === 'function') dlg.close(); else dlg.removeAttribute('open'); }
+$$('[data-open-qr]').forEach(b => b.addEventListener('click', openQR));
+dlg.addEventListener('click', e => {
+  if (e.target.closest('[data-close]')) return closeQR();
+  if (e.target !== dlg) return;
+  const r = dlg.getBoundingClientRect();                     // clique fora da janela (no fundo escuro) fecha
+  if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeQR();
+});
+
+
+$$('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+  const v = b.dataset.copy;
+  try { await navigator.clipboard.writeText(v); toast('Discord copiado: ' + v); }
+  catch (e) { toast('Discord: ' + v); }
+}));
+
+
+$$('[data-web]').forEach(a => { if (WEB) { a.href = WEB; a.hidden = false; } else a.hidden = true; });
+$$('[data-web-text]').forEach(el => { el.hidden = !WEB; });
+$$('[data-selo]').forEach(el => { el.textContent = SELO; el.hidden = !SELO; });
+$$('[data-selo-wrap]').forEach(el => { el.hidden = !SELO; });
+$$('[data-releases]').forEach(a => { if (CONFIGURED) a.href = 'https://github.com/' + USER + '/' + REPO + '/releases'; else a.hidden = true; });
+if (!CONFIGURED && !ALL_URLS) $('#cfg').hidden = false;
+$$('[data-gh-only]').forEach(el => { el.hidden = !CONFIGURED; });
+$('#year').textContent = String(new Date().getFullYear());
+
+
+if (REC) { const c = $('[data-card="' + REC + '"]'); if (c) c.classList.add('rec'); }
+selectTab(REC || 'instalador');
+if (/^#(windows|portable|android)$/.test(location.hash)) {
+  const c = $(location.hash);
+  if (c) { c.classList.add('flash'); setTimeout(() => c.classList.remove('flash'), 2400); }
+}
+
+
+[['.feats .reveal', 80], ['.cards .reveal', 110], ['.faq .reveal', 60]].forEach(([sel, step]) => {
+  $$(sel).forEach((el, i) => el.style.setProperty('--d', (i * step) + 'ms'));
+});
+const reveals = $$('.reveal');
+if (reduceMotion || !('IntersectionObserver' in window)) reveals.forEach(el => el.classList.add('in'));
+else {
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+  }), { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+  reveals.forEach(el => io.observe(el));
+}
+
+render();
+fetchRelease().then(d => { if (d) applyRelease(d); });
+})();
+</script>
+</body>
+</html>
