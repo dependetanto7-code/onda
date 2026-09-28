@@ -1,11 +1,5 @@
 <!doctype html>
-<!--
-  =====================================================================
-  ONDA — SITE DE DOWNLOAD
-  Página única: é só subir este arquivo (index.html) no GitHub Pages.
-  Para configurar, aperte Ctrl+F e procure "CONFIG" (fica perto do final).
-  =====================================================================
--->
+
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
@@ -22,9 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..800&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js')</script>
 <style>
-/* =====================================================================
-   BASE — mesmas cores e fonte do Onda
-   ===================================================================== */
+
 :root{
   --text:#f5f5f7;
   --muted:rgba(245,245,247,.62);
@@ -54,18 +46,14 @@ svg{display:block}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @keyframes rise{from{opacity:0;translate:0 20px}to{opacity:1;translate:none}}
 
-/* fundo: degradê preto → cinza + ruído, igual à home do Onda */
+
 .bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(180deg,#000 0%,#050506 30%,#0e0e10 62%,#1c1c1f 100%)}
 .bg::before{content:'';position:absolute;inset:0;background:radial-gradient(130% 90% at 50% 35%,transparent 55%,rgba(0,0,0,.5) 100%)}
 .bg::after{content:'';position:absolute;inset:0;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* aviso "falta configurar" (só aparece enquanto o CONFIG não estiver preenchido) */
 .cfg{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:center;padding:10px 16px;font-size:13.5px;line-height:1.5;text-align:center;color:#fde68a;background:rgba(66,32,6,.86);border-bottom:1px solid rgba(251,191,36,.28);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 .cfg code{font:12.5px var(--mono);padding:2px 7px;border-radius:6px;background:rgba(0,0,0,.35);color:#fff}
 
-/* =====================================================================
-   TOPO
-   ===================================================================== */
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:18px;padding-bottom:18px}
 .brand{display:inline-flex;align-items:center;height:38px;padding:0 10px;margin-left:-10px;border-radius:12px;font-size:19px;font-weight:700;letter-spacing:-.03em;transition:background .2s,transform .25s var(--ease)}
 .brand:hover{background:rgba(255,255,255,.05)}
@@ -77,9 +65,6 @@ svg{display:block}
 .chip .ic{font-size:17px}
 @media (max-width:560px){.chip.hide-sm{display:none}}
 
-/* =====================================================================
-   HERO
-   ===================================================================== */
 .hero{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(22px,6vh,64px) 20px 10px;isolation:isolate}
 .hero > *{animation:rise 1s var(--ease) both;animation-delay:calc(var(--i,0) * 90ms + 60ms)}
 .hero > .hero-glow{position:absolute;left:0;right:0;top:-90px;height:calc(100% + 340px);z-index:-1;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
@@ -101,7 +86,7 @@ svg{display:block}
 .title{margin-top:10px;padding:0 .06em .06em;font-size:clamp(68px,14vw,132px);font-weight:700;line-height:1;letter-spacing:-.05em;background:linear-gradient(180deg,#fff 35%,#c9d5e8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .lead{max-width:590px;margin-top:12px;font-size:clamp(17px,2.1vw,20px);line-height:1.5;color:var(--muted);text-wrap:balance}
 
-/* botão principal com a borda brilhante que gira (a mesma da barra de busca do Onda) */
+
 .cta-box{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:34px}
 .cta{position:relative;display:inline-flex;padding:1.5px;border-radius:999px;isolation:isolate;animation:float 7s ease-in-out -3.5s infinite}
 .cta::before,.cta::after{content:'';position:absolute;border-radius:inherit;pointer-events:none;animation:spin 8s linear infinite}
@@ -118,7 +103,7 @@ svg{display:block}
 .cta-alt a{color:var(--text);text-decoration:underline;text-decoration-color:rgba(255,255,255,.3);text-underline-offset:3px;transition:text-decoration-color .2s}
 .cta-alt a:hover{text-decoration-color:#fff}
 
-/* destaques */
+
 .feats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:clamp(48px,8vh,84px)}
 .feat{display:flex;align-items:flex-start;gap:14px;padding:18px;border-radius:20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
 .feat-ic{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;font-size:19px}
@@ -131,18 +116,13 @@ svg{display:block}
 @media (max-width:960px){.feats{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:540px){.feats{grid-template-columns:1fr}}
 
-/* =====================================================================
-   SEÇÕES
-   ===================================================================== */
+
 .sec{padding-top:clamp(72px,11vh,120px)}
 .sec-head{max-width:640px;margin:0 auto 32px;text-align:center}
 .kicker{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
 .sec-head h2{margin-top:10px;font-size:clamp(30px,4.6vw,46px);font-weight:700;line-height:1.08;letter-spacing:-.035em}
 .sec-head p{margin-top:12px;font-size:16.5px;line-height:1.5;color:var(--muted);text-wrap:balance}
 
-/* =====================================================================
-   CARTÕES DE DOWNLOAD
-   ===================================================================== */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
 .card{position:relative;display:flex;flex-direction:column;padding:26px 24px 20px;border-radius:26px;scroll-margin-top:40px;
   background:radial-gradient(120% 60% at 50% 0%,rgba(255,255,255,.055),transparent 62%),linear-gradient(180deg,rgba(28,28,32,.86),rgba(12,12,15,.92));
@@ -190,9 +170,7 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
 .rel-note a:hover{color:#fff}
 @media (max-width:900px){.cards{grid-template-columns:1fr;max-width:520px;margin:0 auto}.card.rec{order:-1}}
 
-/* =====================================================================
-   COMO INSTALAR
-   ===================================================================== */
+
 .howto{max-width:780px;margin:0 auto;padding:8px;border-radius:28px;background:linear-gradient(180deg,rgba(28,28,32,.72),rgba(12,12,15,.82));border:1px solid var(--line);box-shadow:0 40px 90px -40px rgba(0,0,0,.95)}
 .seg{--i:0;position:relative;display:grid;grid-template-columns:repeat(3,1fr);padding:5px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
 .seg-ind{position:absolute;top:5px;bottom:5px;left:5px;width:calc((100% - 10px) / 3);border-radius:999px;background:#fff;box-shadow:0 8px 20px -8px rgba(255,255,255,.35);transform:translateX(calc(var(--i) * 100%));transition:transform .5s var(--ease)}
@@ -213,9 +191,7 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
 .tip .ic{margin-top:2px;font-size:17px;color:var(--blue-l)}
 .tip b{color:var(--text);font-weight:600}
 
-/* =====================================================================
-   DÚVIDAS
-   ===================================================================== */
+
 .faq{display:grid;gap:10px;max-width:780px;margin:0 auto}
 .faq details{border-radius:18px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);transition:background .25s,border-color .25s}
 .faq details:hover{border-color:rgba(255,255,255,.12)}
@@ -228,9 +204,7 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
 .faq .ans b{color:var(--text);font-weight:600}
 .faq .ans a{color:var(--blue-xl);text-decoration:underline;text-underline-offset:3px}
 
-/* =====================================================================
-   RODAPÉ
-   ===================================================================== */
+
 .foot{display:flex;flex-direction:column;align-items:center;gap:18px;padding:clamp(80px,12vh,130px) 20px calc(44px + env(safe-area-inset-bottom));text-align:center}
 .foot-logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;letter-spacing:-.02em}
 .foot-logo svg{width:32px;height:32px;border-radius:9px}
@@ -248,7 +222,7 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
 .host{font-size:12.5px;color:var(--faint)}
 
 /* =====================================================================
-   QR CODE (janela) + AVISO
+   QR CODE
    ===================================================================== */
 .qr-dlg{margin:auto;width:min(380px,calc(100vw - 28px));max-height:calc(100dvh - 28px);padding:30px 24px 22px;border:1px solid rgba(255,255,255,.09);border-radius:26px;color:var(--text);text-align:center;overflow:auto;
   background:radial-gradient(120% 55% at 50% 0%,rgba(59,130,246,.2),transparent 62%),linear-gradient(180deg,rgba(28,28,32,.98),rgba(12,12,15,.99));
@@ -275,7 +249,7 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
 .t-msg{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .t-act{flex:none;display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:999px;font-size:13.5px;font-weight:600;color:#000;background:#fff}
 
-/* entrada suave ao rolar a página */
+
 .js .reveal{opacity:0}
 .js .reveal.in{animation:rise .9s var(--ease) both;animation-delay:var(--d,0s)}
 
@@ -287,7 +261,7 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
 </head>
 <body>
 
-<!-- ícones (usados com <svg><use href="#i-nome"/></svg>) -->
+
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.5v11.5"/><path d="m7 10.5 5 5 5-5"/><path d="M4.5 20.5h15"/></symbol>
   <symbol id="i-windows" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M3 3h8.4v8.4H3zM12.6 3H21v8.4h-8.4zM3 12.6h8.4V21H3zM12.6 12.6H21V21h-8.4z"/></symbol>
@@ -311,7 +285,7 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
 <div class="bg" aria-hidden="true"></div>
 
 <div class="cfg" id="cfg" hidden>
-  <span><b>Falta configurar:</b> abra este <code>index.html</code>, procure <code>CONFIG</code> e coloque seu usuário do GitHub e os nomes dos arquivos.</span>
+  <span><b>Falta configurar:</b> abra este <code>index.html</code>, procure <code>CONFIG</code> e coloca as coisas celeste seu burro.</span>
 </div>
 
 <header class="top wrap">
@@ -324,9 +298,6 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
 
 <main id="topo">
 
-  <!-- =================================================================
-       HERO
-       ================================================================= -->
   <section class="hero" aria-labelledby="titulo">
     <div class="hero-glow" aria-hidden="true"><div class="hero-aura"></div></div>
     <div style="--i:0">
@@ -356,9 +327,7 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
       <div class="feat reveal"><span class="feat-ic"><svg class="ic"><use href="#i-infinity"/></svg></span><div><b>A música nunca para</b><span>Quando a lista acaba, entram músicas parecidas.</span></div></div>
     </section>
 
-    <!-- ===============================================================
-         DOWNLOADS
-         =============================================================== -->
+
     <section class="sec" id="baixar" aria-labelledby="t-baixar">
       <header class="sec-head reveal">
         <span class="kicker">Downloads</span>
@@ -420,9 +389,6 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
       <p class="rel-note reveal"><span data-date-wrap hidden>Publicado em <span data-date></span> · </span><a data-releases href="#" target="_blank" rel="noopener">Todas as versões no GitHub</a></p>
     </section>
 
-    <!-- ===============================================================
-         COMO INSTALAR
-         =============================================================== -->
     <section class="sec" id="instalar" aria-labelledby="t-inst2">
       <header class="sec-head reveal">
         <span class="kicker">Passo a passo</span>
@@ -472,9 +438,7 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
       </div>
     </section>
 
-    <!-- ===============================================================
-         DÚVIDAS
-         =============================================================== -->
+
     <section class="sec" id="duvidas" aria-labelledby="t-faq">
       <header class="sec-head reveal">
         <span class="kicker">Dúvidas</span>
@@ -491,7 +455,7 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
         </details>
         <details class="reveal">
           <summary>Tenho iPhone ou Mac. Dá para usar?<svg class="ic"><use href="#i-plus"/></svg></summary>
-          <div class="ans">Ainda não tem versão para iPhone, iPad ou Mac.<span data-web-text> Mas dá para usar o Onda direto no navegador: <a data-web href="#">abrir a versão web</a>.</span></div>
+          <div class="ans">Ainda não tem versão para iPhone, iPad ou Mac.<span data-web-text> Mas dá para usar o Onda direto no navegador: <a data-web href="#">INDISPONIVEL</a>.</span></div>
         </details>
         <details class="reveal">
           <summary>Como atualizar para uma versão nova?<svg class="ic"><use href="#i-plus"/></svg></summary>
@@ -506,9 +470,6 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
   </div>
 </main>
 
-<!-- =====================================================================
-     RODAPÉ
-     ===================================================================== -->
 <footer class="foot">
   <div class="foot-logo">
     <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#111"/><path d="M10 34c6 0 6-12 12-12s6 20 12 20 6-24 12-24 6 16 8 16" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -522,7 +483,7 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
   <p class="host" data-gh-only>Os arquivos são baixados direto do GitHub.</p>
 </footer>
 
-<!-- janela do QR code (Android) -->
+
 <dialog class="qr-dlg" id="qrDlg" aria-labelledby="qrT">
   <button class="dlg-x" type="button" data-close aria-label="Fechar"><svg class="ic"><use href="#i-x"/></svg></button>
   <h2 id="qrT">Baixe no celular</h2>
@@ -539,7 +500,7 @@ html[data-os="android"] .sub.phone-only,html[data-os="ios"] .sub.phone-only{disp
 </div>
 
 <script>
-/* biblioteca de QR code: lean-qr 2.7.4 — MIT License, (c) 2021-2025 David Evans. Não precisa mexer. */
+
 window.leanQR = (function () { 'use strict'; var exports = {};
 "use strict";const t=[.2,3/8,5/9,2/3],o=(o,e)=>r=>{const s=4*o+r-4,n="*-04-39?2$%%$%%'$%''%'''%')(%'))%(++'(++'(+.'+-.',/3',33)-/5)-43).36)058*18<+37<+4:<,4:E,5<A-7>C/8@F/:EH/<EK0=FM1?IP2@KS3BNV4DPY5FS\\6HV_6IXb7K[e8N^i9Pam;Rdp<Tgt".charCodeAt(s)-35,f=s>8?n:1,c=e/f|0,i=e%f,l=f-i,a=s>8?c*t[r]+(o>5)&-2:n,_=c-a;return{t:l*_+i*_+i,o:[[l,_],[i,_+1]],i:a}},e=t=>new Uint8Array(t),r=t=>{const o=new Error(`lean-qr error ${t}`);throw o.code=t,o},s=t=>"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".indexOf(t),n=t=>t.charCodeAt(0),f=(...t)=>(o,e)=>t.forEach(t=>t(o,e)),c=t=>o=>{o.eci!==t&&(o.push(7,4),t<128?o.push(t,8):t<16384?o.push(32768|t,16):o.push(12582912|t,24),o.eci=t)},i=t=>(o,e)=>{o.push(4,4),o.push(t.length,8+8*(e>9)),t.forEach(t=>o.push(t,8))},l=(t,o,e,r,s=(t,o)=>e(t.length,o),n=(r?o=>f(c(r),t(o)):t))=>(n.test=o,n.l=e,n.est=s,n.eci=r&&[r],n),a=l(t=>(o,e)=>{o.push(1,4),o.push(t.length,10+2*(e>26)+2*(e>9));let r=0;for(;r<t.length-2;r+=3)o.push(+t.slice(r,r+3),10);r<t.length-1?o.push(+t.slice(r),7):r<t.length&&o.push(+t[r],4)},t=>/[0-9]/.test(t),(t,o)=>14+2*(o>26)+2*(o>9)+10*t/3),_=l(t=>(o,e)=>{o.push(2,4),o.push(t.length,9+2*(e>26)+2*(e>9));let r=0;for(;r<t.length-1;r+=2)o.push(45*s(t[r])+s(t[r+1]),11);r<t.length&&o.push(s(t[r]),6)},t=>s(t)>=0,(t,o)=>13+2*(o>26)+2*(o>9)+5.5*t),u=l(t=>i([...t].map(n)),t=>n(t)<128,(t,o)=>12+8*(o>9)+8*t);u._=!0,u.u=!0;const d=l(u,t=>n(t)<256,u.l,3);d._=!0;const p=new TextEncoder,m=l(t=>i(p.encode(t)),()=>1,0,26,(t,o)=>12+8*(o>9)+8*p.encode(t).length);m._=!0;let h=()=>{const t=new Map,o=new TextDecoder("sjis"),r=e(2);for(let e=0;e<7973;++e)r[0]=e/192+129+64*(e>5951),r[1]=e%192+64,t.set(o.decode(r),e);return t.delete("\ufffd"),h=()=>t,t};const w=l(t=>(o,e)=>{o.push(8,4),o.push(t.length,8+2*(e>26)+2*(e>9));for(const e of t)o.push(h().get(e),13)},t=>h().has(t),(t,o)=>12+2*(o>26)+2*(o>9)+13*t);w._=!0;const y=[a,_,u,d,w,m],g={auto:(t,{modes:o=y}={})=>(e,s)=>{const n=o.map((o,e)=>{const r=new Map,n=(t,o)=>(r.has(t)||r.set(t,o(t,s)),r.get(t));return{m:o,h:1<<e,C:o.est("",s),S:o.l?(t,e)=>n(e-t,o.l):(e,r)=>n(t.slice(e,r),o.est)}});let f=[{v:0}],c=0,i=0,l=-1;for(const o of[...t,""]){let t=0;if(o)for(const e of n)e.m.test(o)&&(t|=e.h);if(!o||t!==l){if(-1!==l){const t=new Set(f.map(t=>t.D)),o=[];for(const{m:e,C:r,S:s,h:a}of n)if(l&a){const n=s(c,i);for(const l of e.eci??t)if(!e.u||!l){let t;for(const o of f)if(o.D===l||e.eci){const f=o.m===e&&o.D===l,a=f?o.V:o,_=e._&&f?o.v+n-r:a.v+12*(a.D!==l)+(f?s(f?o.$:c,i):n);(!t||_<t.v)&&(t={$:f?o.$:c,V:a,m:e,D:l,A:i,v:_})}t&&o.push(t)}}f=o}l=t,c=i}i+=o.length}f.length||r(5);const a=[];for(let o=f.reduce((t,o)=>o.v<t.v?o:t);o.m;o=o.V)a.push(o.m(t.slice(o.$,o.A)));a.reverse().forEach(t=>t(e,s))},multi:f,eci:c,bytes:i,numeric:a,alphaNumeric:_,ascii:u,iso8859_1:d,shift_jis:w,utf8:m},x=()=>({F:e(2956),I:0,push(t,o){for(let e=o,r=8-(7&this.I);e>0;e-=r,r=8)this.F[this.I>>3]|=t<<r>>e,this.I+=e<r?e:r}}),b=(t,o=t*t,r=e(o))=>({size:t,K:r,get:(o,e)=>o>=0&&o<t&&!!(1&r[e*t+o]),toString({on:o="##",off:e="  ",lf:r="\n",pad:s=4,padX:n=s,padY:f=s}={}){let c="";for(let s=-f;s<t+f;++s){for(let r=-n;r<t+n;++r)c+=this.get(r,s)?o:e;c+=r}return c},toImageData(o,{on:e=[0,0,0],off:r=[0,0,0,0],pad:s=4,padX:n=s,padY:f=s}={}){const c=t+2*n,i=t+2*f,l=o.createImageData(c,i),a=new Uint32Array(l.data.buffer);l.data.set([...e,255]);const _=a[0];l.data.set([...r,255]);const u=a[0];for(let t=0;t<i;++t)for(let o=0;o<c;++o)a[t*c+o]=this.get(o-n,t-f)?_:u;return l},toCanvas(t,o){const e=t.getContext("2d"),r=this.toImageData(e,o);t.width=r.width,t.height=r.height,e.putImageData(r,0,0)},toDataURL({type:t="image/png",scale:o=1,...e}={}){const r=document.createElement("canvas"),s=r.getContext("2d"),n=this.toImageData(s,e);return r.width=n.width*o,r.height=n.height*o,s.putImageData(n,0,0),s.imageSmoothingEnabled=!1,s.globalCompositeOperation="copy",s.drawImage(r,0,0,n.width,n.height,0,0,r.width,r.height),r.toDataURL(t,1)}}),C=[(t,o)=>1&(t^o),(t,o)=>1&o,t=>t%3,(t,o)=>(t+o)%3,(t,o)=>1&(t/3^o>>1),(t,o)=>(t&o&1)+t*o%3,(t,o)=>(t&o)+t*o%3&1,(t,o)=>(t^o)+t*o%3&1],z=e(511);for(let t=0,o=1;t<255;o=2*o^285*(o>127))z[z[o+255]=t++]=o;const E=t=>z[t%255],M=t=>z[t+255],S=(t,o)=>{const r=e(t.length+o.length-1);for(let e=0;e<t.length;++e)for(let s=0;s<o.length;++s)r[e+s]^=E(t[e]+o[s]);return r.map(M)},v=(t,o)=>{const r=e(t.length+o.length-1);r.set(t,0);for(let e=0;e<t.length;++e)if(r[e]){const t=M(r[e]);for(let s=0;s<o.length;++s)r[e+s]^=E(o[s]+t)}return r.slice(t.length)},D=[[0],[0,0]];for(let t=1;t<30;++t)D.push(S(D[t],[0,t]));const L=(t,o)=>{const r=[[],[]];let s=0,n=0;for(const[e,f]of o.o)for(let c=0;c<e;++c,s+=f){const e=t.slice(s,s+f);r[0].push(e),r[1].push(v(e,D[o.i])),n+=f+o.i}const f=e(n);n=0;for(const t of r)for(let o=0,e=-1;e<n;++o){e=n;for(const e of t)o<e.length&&(f[n++]=e[o])}return f},V=(t,o,e)=>{let r=t<<=e;for(let t=134217728;t>>=1;)r&t&&(r^=o*(t>>e));return r|t},$=({size:t,K:o},e)=>{const r=(e,r,s,n)=>{for(;s-- >0;e+=t)o.fill(n,e,e+r)},s=(o,e,s)=>{for(let n=0;n++<3;s-=2)r(e*t+o-(s>>1)*(t+1),s,s,2|n)},n=2*((t-13)/(1+(e/7|0))/2+.75|0);if(e>1)for(let o=t-7;o>8;o-=n){for(let t=o;t>8;t-=n)s(o,t,5);o<t-7&&s(o,6,5)}if(e>6)for(let r=V(e,7973,12),s=1;s<7;++s)for(let e=12;e-- >9;r>>=1)o[s*t-e]=2|1&r;r(7,2,9,2),r(t-8,8,9,2);for(let e=0;e<t;++e)o[6*t+e]=3^1&e;s(3,3,7),s(t-4,3,7);for(let e=0;e<t;++e)for(let r=e;r<t;++r)o[r*t+e]=o[e*t+r];o[(t-8)*t+8]=3},A=({size:t,K:o})=>{const e=[];for(let r=t-2,s=t,n=-1;r>=0;r-=2){for(5===r&&(r=4);s+=n,-1!==s&&s!==t;){const n=s*t+r;o[n+1]||e.push(n+1),o[n]||e.push(n)}n*=-1}return e},F=({K:t},o,e)=>o.forEach((o,r)=>t[o]=e[r>>3]>>(7&~r)&1),H=({size:t,K:o},e,r,s)=>{for(let r=0;r<t;++r)for(let s=0;s<t;++s){const n=r*t+s;o[n]^=!(e(s,r)||2&o[n])}let n=21522^V((1^s)<<3|r,1335,10);for(let e=0;e++<8;n>>=1)o[(e-(e<7))*t+8]=1&n,o[9*t-e]=1&n;for(let e=8;--e,n;n>>=1)o[8*t+e-(e<7)]=1&n,o[(t-e)*t+8]=1&n},I=({size:t,K:o},e=0,r=0)=>{for(let s=0;s<t;++s){for(let n=0;n<2;++n)for(let f,c=0,i=0,l=2;c<t;++c){const a=1&o[n?s*t+c:c*t+s];r+=a,i=(i>>1|2098176)&(3047517^a-1),2049&i&&(e+=40),a^l&&(f=0),l=a,e+=5===++f?3:f>5}if(s)for(let r=t+s,n=5*o[s-1]^o[s];r<t*t;r+=t){const t=5*o[r-1]^o[r];e+=3*!(1&(n|t)|4&(n^t)),n=t}}return e+10*(10*Math.abs(r/(t*t)-1)|0)},K=[],N=(t=r(1),{minCorrectionLevel:e=0,maxCorrectionLevel:s=3,minVersion:n=1,maxVersion:f=40,mask:c,trailer:i=60433,...l}={})=>{s<e&&r(3),f<n&&r(2),"string"==typeof t&&(t=g.auto(t,l));for(let r=n,l=0;r<=f;++r){let n=K[r];n||(K[r]=n=b(4*r+17),$(n,r),n.p=A(n));const f=o(r,n.p.length>>3);if(8*f(e).t<l)continue;const a=x();t(a,r),l=a.I;for(let t=s;t>=e;--t){const o=f(t);if(8*o.t<l)continue;for(a.I=l+11&-8;a.I<8*o.t;)a.push(i,16);const e=b(n.size,n.K);return F(e,n.p,L(a.F,o)),(C[c]?[C[c]]:C).map((o,r)=>{const s=b(e.size,e.K);return H(s,o,c??r,t),s.s=C[c]?0:I(s),s}).reduce((t,o)=>o.s<t.s?o:t)}}r(4)};N.with=(...t)=>(o,e)=>N(o,{modes:[...y,...t],...e}),exports.correction={min:0,L:0,M:1,Q:2,H:3,max:3},exports.generate=N,exports.mode=g;
 return exports; })();
@@ -549,34 +510,28 @@ return exports; })();
 (() => {
 'use strict';
 
-/* =====================================================================
-   CONFIG — é só mexer aqui 👇
-   ===================================================================== */
+
 const CONFIG = {
-  // 1) Seu usuário do GitHub e o nome do repositório (onde está a Release com os arquivos)
+
   githubUsuario: 'dependetanto7-code',
   githubRepositorio: 'onda',
 
-  // 2) A "tag" da versão atual, igual à que você criou na Release
-  versao: 'v1.0',
 
-  // 3) O nome EXATO de cada arquivo, do jeito que aparece na Release do GitHub.
-  //    "tamanho" é opcional: com o GitHub configurado, o site descobre sozinho.
-  //    (Arquivo fora do GitHub? Acrescente  url: 'https://link-direto'  no arquivo.)
+  versao: 'v1.0.1',
+
+
   arquivos: {
     instalador: { nome: 'Onda-Setup-v1.0.exe',    tamanho: '' },
     portable:   { nome: 'Onda-Portable-v1.0.exe', tamanho: '' },
     apk:        { nome: 'Onda-v1.0.apk',          tamanho: '94,7 KB' },
   },
 
-  // 4) (opcional) Link do site principal do Onda. Aparece como "Versão web". Deixe '' para esconder.
+
   siteWeb: '',
 
-  // 5) (opcional) Selo ao lado da versão, no topo. Deixe '' para esconder.
+
   selo: 'beta aberta',
 };
-/* ===================== daqui para baixo não precisa mexer ===================== */
-
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const KEYS = ['instalador', 'portable', 'apk'];
@@ -589,7 +544,7 @@ const SELO = String(CONFIG.selo || '').trim();
 const root = document.documentElement;
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---------- formatação ---------- */
+
 const nf = new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 1 });
 function fmtBytes(b) {
   b = Number(b);
@@ -613,15 +568,14 @@ function dlUrl(tag, name) {
   return 'https://github.com/' + USER + '/' + REPO + '/releases/download/' + encodeURIComponent(tag) + '/' + encodeURIComponent(ghName(name));
 }
 
-/* ---------- estado: começa com o CONFIG, depois o GitHub atualiza ---------- */
+
 const state = { tag: CONFIG.versao, date: '', files: {} };
 KEYS.forEach(k => {
   const f = (CONFIG.arquivos && CONFIG.arquivos[k]) || {};
   state.files[k] = { name: f.nome || '', size: f.tamanho || '', tag: CONFIG.versao, url: f.url || dlUrl(CONFIG.versao, f.nome) };
 });
 
-/* ---------- qual sistema a pessoa está usando ---------- */
-function detectOS() {
+  function detectOS() {
   const ua = navigator.userAgent || '';
   const p = String((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '').toLowerCase();
   if (/android/i.test(ua) || p === 'android') return 'android';
@@ -635,7 +589,7 @@ const OS = detectOS();
 root.dataset.os = OS;
 const REC = location.hash === '#android' ? 'apk' : OS === 'windows' ? 'instalador' : OS === 'android' ? 'apk' : '';
 
-/* ---------- desenha a página com o estado atual ---------- */
+
 function render() {
   $$('[data-version]').forEach(el => { el.textContent = ver(state.tag); });
   KEYS.forEach(k => {
@@ -679,7 +633,7 @@ function renderCta() {
   $$('[data-for-os]').forEach(el => { el.hidden = el.dataset.forOs !== group; });
 }
 
-/* ---------- lê a última Release no GitHub (tamanhos, versão e links sempre certos) ---------- */
+
 async function fetchRelease() {
   if (!CONFIGURED) return null;
   const KEY = ('onda-dl:' + USER + '/' + REPO).toLowerCase();
@@ -710,7 +664,7 @@ async function fetchRelease() {
   }
 }
 
-// descobre qual arquivo da Release é qual (primeiro pelo nome do CONFIG, depois por padrões comuns)
+
 function pickAssets(assets) {
   const used = new Set(), out = {};
   const rank = (k, n) => k === 'apk' ? (/universal/i.test(n) ? 0 : /arm64|v8a|aarch64/i.test(n) ? 1 : 2) : (/arm|aarch/i.test(n) ? 1 : 0);
@@ -743,7 +697,7 @@ function applyRelease(d) {
   render();
 }
 
-/* ---------- abas do "Como instalar" ---------- */
+
 const tabs = $$('[role="tab"]');
 function selectTab(k, focus) {
   const i = Math.max(0, KEYS.indexOf(k));
@@ -769,7 +723,7 @@ tabs.forEach((t, i) => {
   });
 });
 
-/* ---------- aviso rápido (toast) ---------- */
+
 const toastEl = $('#toast'), toastMsg = $('#toastMsg'), toastAct = $('#toastAct');
 let toastTimer = 0;
 function toast(msg, withHowto) {
@@ -782,13 +736,13 @@ function toast(msg, withHowto) {
 }
 toastAct.addEventListener('click', () => toastEl.classList.remove('show'));
 
-/* ---------- links "Como instalar" dos cartões: já abrem a aba certa ---------- */
+
 document.addEventListener('click', e => {
   const h = e.target.closest('[data-howto]');
   if (h) selectTab(h.dataset.howto);
 });
 
-/* ---------- cliques nos botões de download ---------- */
+
 document.addEventListener('click', e => {
   const a = e.target.closest('a[data-dl]');
   if (!a) return;
@@ -802,7 +756,7 @@ document.addEventListener('click', e => {
   toast(k === 'apk' ? 'Baixando o APK…' : 'Seu download começou.', true);
 });
 
-/* ---------- QR code para abrir a página no celular ---------- */
+
 function qrSvg(text) {
   const q = window.leanQR;
   const code = q.generate(text, { minCorrectionLevel: q.correction.M });
@@ -832,14 +786,14 @@ dlg.addEventListener('click', e => {
   if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeQR();
 });
 
-/* ---------- Discord: copia o usuário ---------- */
+
 $$('[data-copy]').forEach(b => b.addEventListener('click', async () => {
   const v = b.dataset.copy;
   try { await navigator.clipboard.writeText(v); toast('Discord copiado: ' + v); }
   catch (e) { toast('Discord: ' + v); }
 }));
 
-/* ---------- partes opcionais do CONFIG ---------- */
+
 $$('[data-web]').forEach(a => { if (WEB) { a.href = WEB; a.hidden = false; } else a.hidden = true; });
 $$('[data-web-text]').forEach(el => { el.hidden = !WEB; });
 $$('[data-selo]').forEach(el => { el.textContent = SELO; el.hidden = !SELO; });
@@ -849,7 +803,7 @@ if (!CONFIGURED && !ALL_URLS) $('#cfg').hidden = false;
 $$('[data-gh-only]').forEach(el => { el.hidden = !CONFIGURED; });
 $('#year').textContent = String(new Date().getFullYear());
 
-/* ---------- recomendação conforme o aparelho ---------- */
+
 if (REC) { const c = $('[data-card="' + REC + '"]'); if (c) c.classList.add('rec'); }
 selectTab(REC || 'instalador');
 if (/^#(windows|portable|android)$/.test(location.hash)) {
@@ -857,7 +811,7 @@ if (/^#(windows|portable|android)$/.test(location.hash)) {
   if (c) { c.classList.add('flash'); setTimeout(() => c.classList.remove('flash'), 2400); }
 }
 
-/* ---------- entrada suave dos blocos ao rolar ---------- */
+
 [['.feats .reveal', 80], ['.cards .reveal', 110], ['.faq .reveal', 60]].forEach(([sel, step]) => {
   $$(sel).forEach((el, i) => el.style.setProperty('--d', (i * step) + 'ms'));
 });
